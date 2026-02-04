@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
-import Auth from './Auth';
-import Sidebar from './Sidebar';
-import ChatWindow from './ChatWindow';
-import SettingsModal from './SettingsModal';
-import UserProfileModal from './UserProfileModal';
-import { User, AppState, Message } from '../types';
+import Auth from './Auth.tsx';
+import Sidebar from './Sidebar.tsx';
+import ChatWindow from './ChatWindow.tsx';
+import SettingsModal from './SettingsModal.tsx';
+import UserProfileModal from './UserProfileModal.tsx';
+import { User, AppState, Message } from '../types.ts';
 
 interface ChatAppProps {
   state: AppState;
@@ -39,7 +39,6 @@ const ChatApp: React.FC<ChatAppProps> = ({
 
   return (
     <div className="flex h-screen bg-slate-900 text-slate-100 relative overflow-hidden">
-      {/* Sidebar */}
       <Sidebar 
         currentUser={state.currentUser}
         users={state.users}
@@ -49,8 +48,6 @@ const ChatApp: React.FC<ChatAppProps> = ({
         onOpenSettings={() => setIsSettingsOpen(true)}
         onLogout={onLogout}
       />
-
-      {/* Main Chat Area */}
       <ChatWindow 
         title={chatTitle}
         messages={state.messages}
@@ -61,8 +58,6 @@ const ChatApp: React.FC<ChatAppProps> = ({
         onAddReaction={onAddReaction}
         onViewProfile={(u) => setProfileViewUser(u)}
       />
-
-      {/* Modals */}
       {isSettingsOpen && (
         <SettingsModal 
           user={state.currentUser} 
@@ -70,7 +65,6 @@ const ChatApp: React.FC<ChatAppProps> = ({
           onUpdate={onUpdateUser}
         />
       )}
-
       {profileViewUser && (
         <UserProfileModal 
           user={profileViewUser} 

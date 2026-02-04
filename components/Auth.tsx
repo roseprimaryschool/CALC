@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { User, AppState } from '../types';
+import { User, AppState } from '../types.ts';
 
 interface AuthProps {
   onAuth: (user: User) => void;

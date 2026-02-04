@@ -15,19 +15,6 @@
             margin: 0;
             overflow: hidden;
         }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
     </style>
 <script type="importmap">
 {
@@ -42,6 +29,7 @@
 </head>
 <body>
     <div id="root"></div>
+    <!-- Load the main entry point even on 404 paths -->
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>

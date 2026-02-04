@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { User, Message } from '../types';
+import { User, Message } from '../types.ts';
 
 interface SidebarProps {
   currentUser: User;
@@ -34,7 +34,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div className="w-80 border-r border-slate-800 flex flex-col bg-slate-900/50">
-      {/* Header */}
       <div className="p-4 border-b border-slate-800 flex items-center justify-between">
         <button 
           onClick={onOpenSettings}
@@ -55,8 +54,6 @@ const Sidebar: React.FC<SidebarProps> = ({
           </svg>
         </button>
       </div>
-
-      {/* Profile Summary */}
       <div className="px-4 py-6 bg-slate-800/30">
         <div className="flex items-center gap-3">
           <img src={currentUser.avatar} alt="Me" className="w-12 h-12 rounded-2xl object-cover ring-2 ring-indigo-500 ring-offset-2 ring-offset-slate-900" />
@@ -66,31 +63,21 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
       </div>
-
-      {/* Chat Lists */}
       <div className="flex-1 overflow-y-auto custom-scrollbar">
         <div className="p-4 space-y-1">
-          {/* Global Chat Item */}
           <button 
             onClick={() => onChatSelect('global')}
             className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all group ${activeChatId === 'global' ? 'bg-indigo-600 shadow-lg shadow-indigo-600/20' : 'hover:bg-slate-800'}`}
           >
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-inner ${activeChatId === 'global' ? 'bg-indigo-500' : 'bg-slate-700'}`}>
-              🌍
-            </div>
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-inner ${activeChatId === 'global' ? 'bg-indigo-500' : 'bg-slate-700'}`}>🌍</div>
             <div className="flex-1 text-left">
               <h4 className={`font-semibold ${activeChatId === 'global' ? 'text-white' : 'text-slate-200'}`}>Global Room</h4>
-              <p className={`text-xs truncate max-w-[140px] ${activeChatId === 'global' ? 'text-indigo-100' : 'text-slate-500'}`}>
-                {getLatestMessage('global')}
-              </p>
+              <p className={`text-xs truncate max-w-[140px] ${activeChatId === 'global' ? 'text-indigo-100' : 'text-slate-500'}`}>{getLatestMessage('global')}</p>
             </div>
           </button>
-
           <div className="pt-4 pb-2 px-2">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Direct Messages</p>
           </div>
-
-          {/* User Items */}
           {otherUsers.map(user => (
             <button 
               key={user.id}
@@ -99,15 +86,11 @@ const Sidebar: React.FC<SidebarProps> = ({
             >
               <div className="relative">
                 <img src={user.avatar} alt={user.displayName} className="w-12 h-12 rounded-2xl object-cover" />
-                {user.lastOnline === 'Online' && (
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-4 border-slate-900 rounded-full" />
-                )}
+                {user.lastOnline === 'Online' && <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-4 border-slate-900 rounded-full" />}
               </div>
               <div className="flex-1 text-left">
                 <h4 className={`font-semibold ${activeChatId === user.id ? 'text-white' : 'text-slate-200'}`}>{user.displayName}</h4>
-                <p className={`text-xs truncate max-w-[140px] ${activeChatId === user.id ? 'text-indigo-100' : 'text-slate-500'}`}>
-                  {getLatestMessage(user.id)}
-                </p>
+                <p className={`text-xs truncate max-w-[140px] ${activeChatId === user.id ? 'text-indigo-100' : 'text-slate-500'}`}>{getLatestMessage(user.id)}</p>
               </div>
             </button>
           ))}
