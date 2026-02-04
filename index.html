@@ -15,33 +15,47 @@
             margin: 0;
             overflow: hidden;
         }
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* Simple loader styling */
+        .initial-loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 1rem;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(79, 70, 229, 0.1);
+            border-left-color: #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3"
   }
 }
 </script>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <div class="initial-loader">
+            <div class="spinner"></div>
+            <p style="color: #64748b; font-size: 0.875rem; font-weight: 500;">Initializing Secure Environment...</p>
+        </div>
+    </div>
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
